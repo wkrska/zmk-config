@@ -1,0 +1,82 @@
+/*
+ * Copyright (c) 2020 Pete Johanson
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#include <dt-bindings/zmk/matrix_transform.h>
+#include "plastic-fantastic-layouts.dtsi"
+
+/ {
+    chosen {
+//        zephyr,display = &oled;
+        zmk,kscan = &kscan0;
+        zmk,physical-layout = &plastic_fantastic_layout;
+    };
+
+    default_transform: keymap_transform_0 {
+        compatible = "zmk,matrix-transform";
+        columns = <16>;
+        rows = <5>;
+// | SW0x00 | SW0x01 | SW0x02 | SW0x03 | SW0x04 | SW0x05 | SW0x06 | SW0x07 |  | SW0x00 | SW0x01 | SW0x02 | SW0x03 | SW0x04 | SW0x05 | SW0x06 | SW0x07 |
+// | SW0x08 | SW0x09 | SW0x0A | SW0x0B | SW0x0C | SW0x0D | SW0x0E | SW0x0F |  | SW0x08 | SW0x09 | SW0x0A | SW0x0B | SW0x0C | SW0x0D | SW0x0E | SW0x0F |
+// | SW0x10 | SW0x11 | SW0x12 | SW0x13 | SW0x14 | SW0x15 | SW0x16 | SW0x17 |  | SW0x10 | SW0x11 | SW0x12 | SW0x13 | SW0x14 | SW0x15 | SW0x16 | SW0x17 |
+// | SW0x18 | SW0x19 | SW0x1A | SW0x1B | SW0x1C | SW0x1D | SW0x1E | SW0x1F |  | SW0x18 | SW0x19 | SW0x1A | SW0x1B | SW0x1C | SW0x1D | SW0x1E | SW0x1F |
+// | SW0x20 | SW0x21 | SW0x22 | SW0x23 | SW0x24 | SW0x25 | SW0x26 | SW0x27 |  | SW0x20 | SW0x21 | SW0x22 | SW0x23 | SW0x24 | SW0x25 | SW0x26 | SW0x27 |
+        map = <
+    RC(0,00) RC(0,01) RC(0,02) RC(0,03) RC(0,04) RC(0,05) RC(0,06) RC(0,07)    RC(0,08) RC(0,09) RC(0,10) RC(0,11) RC(0,12) RC(0,13) RC(0,14) RC(0,15)
+    RC(1,00) RC(1,01) RC(1,02) RC(1,03) RC(1,04) RC(1,05) RC(1,06) RC(1,07)    RC(1,08) RC(1,09) RC(1,10) RC(1,11) RC(1,12) RC(1,13) RC(1,14) RC(1,15)
+    RC(2,00) RC(2,01) RC(2,02) RC(2,03) RC(2,04) RC(2,05) RC(2,06) RC(2,07)    RC(2,08) RC(2,09) RC(2,10) RC(2,11) RC(2,12) RC(2,13) RC(2,14) RC(2,15)
+    RC(4,00) RC(4,01) RC(4,02) RC(4,03) RC(4,04) RC(4,05) RC(4,06) RC(4,07)    RC(4,08) RC(4,09) RC(4,10) RC(4,11) RC(4,12) RC(4,13) RC(4,14) RC(4,15)
+    RC(5,00) RC(5,01) RC(5,02) RC(5,03) RC(5,04) RC(5,05) RC(5,06) RC(5,07)    RC(5,08) RC(5,09) RC(5,10) RC(5,11) RC(5,12) RC(5,13) RC(5,14) RC(5,15)
+        >;
+    };
+
+    kscan0: kscan {
+        compatible = "zmk,kscan-gpio-matrix";
+        wakeup-source;
+
+        diode-direction = "col2row";
+        row-gpios
+            = <&pro_micro 4 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&pro_micro 5 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&pro_micro 6 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&pro_micro 7 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            , <&pro_micro 8 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
+            ;
+
+        col-gpios
+            = <&pro_micro 21 GPIO_ACTIVE_HIGH>
+            , <&pro_micro 20 GPIO_ACTIVE_HIGH>
+            , <&pro_micro 19 GPIO_ACTIVE_HIGH>
+            , <&pro_micro 18 GPIO_ACTIVE_HIGH>
+            , <&pro_micro 15 GPIO_ACTIVE_HIGH>
+            , <&pro_micro 14 GPIO_ACTIVE_HIGH>
+            , <&pro_micro 16 GPIO_ACTIVE_HIGH>
+            , <&pro_micro 10 GPIO_ACTIVE_HIGH>
+            ;
+
+    };
+
+    // TODO: per-key RGB node(s)?
+};
+
+&pro_micro_i2c {
+    status = "okay";
+
+    oled: ssd1306@3c {
+        compatible = "solomon,ssd1306fb";
+        reg = <0x3c>;
+        width = <128>;
+        height = <32>;
+        segment-offset = <0>;
+        page-offset = <0>;
+        display-offset = <0>;
+        multiplex-ratio = <31>;
+        segment-remap;
+        com-invdir;
+        com-sequential;
+        inversion-on;
+        prechargep = <0x22>;
+    };
+};
