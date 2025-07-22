@@ -1,8 +1,0 @@
-# Copyright (c) 2020 Pete Johanson
-# SPDX-License-Identifier: MIT
-
-config SHIELD_PLASTIC_FANTASTIC_LEFT
-    def_bool $(shields_list_contains,plastic_fantastic_left)
-
-config SHIELD_PLASTIC_FANTASTIC_RIGHT
-    def_bool $(shields_list_contains,plastic_fantastic_right)

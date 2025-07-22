@@ -1,4 +1,4 @@
-name: plastic_fantastic
+name: fanplastic
 build:
   settings:
     board_root: .

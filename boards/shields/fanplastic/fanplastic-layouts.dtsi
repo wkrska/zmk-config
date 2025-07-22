@@ -1,5 +1,7 @@
+#include <physical_layouts.dtsi>
+
 / {
-    layouts_plastic_fantastic_position_map: layouts_plastic_fantastic_position_map {
+    layouts_fanplastic_position_map: layouts_fanplastic_position_map {
         compatible = "zmk,physical-layout-position-map";
 
         complete;
@@ -14,9 +16,9 @@
 };
 
 / {
-    plastic_fantastic_layout: plastic_fantastic_layout {
+    fanplastic_layout: fanplastic_layout {
         compatible = "zmk,physical-layout";
-        display-name = "plastic fantastic";
+        display-name = "fanplastic";
 
         keys  //                     w   h    x    y     rot    rx    ry
             = <&key_physical_attrs 100 100    0    0       0     0     0>
@@ -110,9 +112,9 @@
     };
 };
 
-&layouts_plastic_fantastic_position_map {
-    plastic_fantastic_posmap: def {
-        physical-layout = <&plastic_fantastic_layout>;
+&layouts_fanplastic_position_map {
+    fanplastic_posmap: def {
+        physical-layout = <&fanplastic_layout>;
         positions
             = < 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15>
             , <16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31>

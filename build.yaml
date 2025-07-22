@@ -20,6 +20,6 @@
 ---
 include:
   - board: nice_nano_v2
-    shield: plastic_fantastic_left
+    shield: fanplastic_left
   - board: nice_nano_v2
-    shield: plastic_fantastic_right
+    shield: fanplastic_right

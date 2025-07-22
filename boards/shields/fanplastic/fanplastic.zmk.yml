@@ -1,6 +1,6 @@
 file_format: "1"
-id: plastic_fantastic
-name: Plastic-Fantastic
+id: fanplastic
+name: Fanplastic
 type: shield
 url: https://github.com/foostan/crkbd/
 requires: [pro_micro]
@@ -11,5 +11,5 @@ features:
   - underglow
   - studio
 siblings:
-  - plastic_fantastic_left
-  - plastic_fantastic_right
+  - fanplastic_left
+  - fanplastic_right
